@@ -1,0 +1,40 @@
+---
+title: AI Flow — System Overview
+---
+graph TB
+    subgraph External["External Systems"]
+        Linear["Linear<br/>(Tickets)"]
+        GitHub["GitHub<br/>(PRs / Actions)"]
+        Slack["Slack<br/>(Commands)"]
+    end
+
+    subgraph Orchestration["Workflow Orchestration"]
+        Temporal["Temporal Server"]
+        Worker["Temporal Worker"]
+        Temporal <--> Worker
+    end
+
+    subgraph Execution["AI Execution"]
+        Claude["Claude LLM"]
+    end
+
+    subgraph Repository["Repository Context"]
+        Plan["plan.md"]
+        Summary["summary.md"]
+        Handoff["handoff.md"]
+        State["state.json"]
+    end
+
+    Linear -- "ticket created" --> Temporal
+    GitHub -- "approval signal" --> Temporal
+    Slack -- "command signal" --> Temporal
+
+    Worker -- "invoke" --> Claude
+    Claude -- "write context" --> Repository
+    Worker -- "update state" --> State
+    Claude -- "create PR" --> GitHub
+
+    style External fill:#e8f4fd,stroke:#4a90d9
+    style Orchestration fill:#fef3e2,stroke:#f5a623
+    style Execution fill:#e8fde8,stroke:#7ed321
+    style Repository fill:#f5e6ff,stroke:#9b59b6

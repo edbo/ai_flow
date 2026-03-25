@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(brew list:*)",
+      "Bash(pre-commit install:*)",
+      "Bash(npx -y @mermaid-js/mermaid-cli mmdc -i docs/architecture.mmd -o docs/architecture.svg)",
+      "Bash(npx -y @mermaid-js/mermaid-cli --help)",
+      "Bash(ls /Users/edbo/Source/ai_flow/docs/*.mmd)",
+      "Bash(pnpm add:*)",
+      "Bash(pnpm approve-builds:*)",
+      "Bash(pnpm config:*)",
+      "Bash(pnpm install:*)",
+      "Bash(pnpm mmdc:*)",
+      "Bash(ls -la /Users/edbo/Source/ai_flow/docs/*.svg)"
+    ]
+  }
+}

@@ -1,0 +1,30 @@
+---
+default_stages: [pre-commit]
+default_install_hook_types: [pre-commit, commit-msg]
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks.git
+    rev: v3.2.0
+    hooks:
+      - exclude: README.md
+        id: trailing-whitespace
+      - id: check-merge-conflict
+      - id: debug-statements
+      - id: end-of-file-fixer
+      - id: mixed-line-ending
+
+  - repo: local
+    hooks:
+      - id: generate-mermaid-diagrams
+        name: Generate Mermaid Diagrams
+        entry: bash -c 'SVG="${1%.mmd}.svg" && PUPPETEER_EXECUTABLE_PATH="$(find .cache/puppeteer/chrome -name "Google Chrome for Testing" -type f 2>/dev/null | head -1)" pnpm mmdc -i "$1" -o "$SVG" -t dark -b transparent && [ -n "$(tail -c1 "$SVG")" ] && printf "\n" >> "$SVG"; git add "$SVG"' --
+        language: system
+        files: \.mmd$
+        pass_filenames: true
+
+  - repo: https://github.com/alessandrojcm/commitlint-pre-commit-hook
+    rev: v9.18.0
+    hooks:
+      - id: commitlint
+        stages: [commit-msg]
+        additional_dependencies: ["@commitlint/config-conventional"]

@@ -1,0 +1,37 @@
+---
+title: AI Flow — Workflow State Machine
+---
+stateDiagram-v2
+    direction TB
+
+    [*] --> backlog
+
+    backlog --> planning : assign
+
+    planning --> plan_approval : plan ready
+    plan_approval --> test_planning : approved
+    plan_approval --> planning : revise
+
+    test_planning --> test_plan_approval : test plan ready
+    test_plan_approval --> test_implementation : approved
+    test_plan_approval --> test_planning : revise
+
+    test_implementation --> test_approval : tests written
+    test_approval --> implementation : approved
+    test_approval --> test_implementation : revise
+
+    implementation --> implementation_approval : code ready
+    implementation_approval --> completed : approved
+    implementation_approval --> implementation : revise
+
+    completed --> [*]
+
+    note right of planning
+        Claude generates
+        implementation plan
+    end note
+
+    note right of plan_approval
+        Human reviews via
+        GitHub / Slack signal
+    end note
