@@ -19,6 +19,13 @@
                 "revert"
             ]
         ],
+        "scope-enum": [
+            2,
+            "always",
+            [
+                "workflow"
+            ]
+        ],
         "scope-empty": [
             1,
             "never"
