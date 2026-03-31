@@ -3,6 +3,9 @@ name = "ai-flow-workspace"
 version = "0.0.0"
 description = "Opinionated AI agent workflow system built on Temporal and Claude"
 requires-python = ">=3.13"
+dependencies = [
+    "ai-flow",
+]
 
 [dependency-groups]
 dev = [
@@ -35,7 +38,17 @@ warn_unused_ignores = true
 
 [tool.pytest.ini_options]
 testpaths = ["libs/*/tests", "services/*/tests"]
-addopts = "--strict-markers --tb=short -q"
+addopts = "--strict-markers --tb=short -q --cov=libs --cov=services --cov-report=xml:coverage.xml --cov-report=term-missing"
+
+[tool.coverage.run]
+source = ["libs/*/src", "services/*/src"]
+omit = ["*/tests/*"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "if TYPE_CHECKING:",
+]
 
 [tool.ruff]
 target-version = "py313"
