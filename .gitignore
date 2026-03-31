@@ -229,3 +229,6 @@ out/
 # Misc
 *.tsbuildinfo
 .turbo/
+
+# Terraform
+.terraform

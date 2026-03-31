@@ -11,7 +11,16 @@
       "Bash(pnpm config:*)",
       "Bash(pnpm install:*)",
       "Bash(pnpm mmdc:*)",
-      "Bash(ls -la /Users/edbo/Source/ai_flow/docs/*.svg)"
+      "Bash(ls -la /Users/edbo/Source/ai_flow/docs/*.svg)",
+      "Bash(grep -E \"\\\\.\\(md|json\\)$\")",
+      "WebFetch(domain:mcp.linear.app)",
+      "WebFetch(domain:linear.app)",
+      "mcp__linear__list_teams",
+      "mcp__linear__list_projects",
+      "mcp__linear__list_issue_labels",
+      "mcp__linear__save_project",
+      "mcp__linear__save_milestone",
+      "mcp__linear__save_issue"
     ]
   }
 }

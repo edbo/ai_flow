@@ -1,0 +1,19 @@
+version: '3'
+
+tasks:
+  spacectl-login:
+    desc: 'Login to spacectl'
+    cmds:
+      - spacectl profile login --method browser --endpoint https://nova-install.app.spacelift.io nova-install
+
+  spacectl-token:
+    desc: "Export Spacelift API token command, call this command using 'eval $(task spacectl-token)'"
+    cmds:
+      - echo "export SPACELIFT_API_TOKEN=$(spacectl profile export-token nova-install)"
+
+  spacectl-preview:
+    desc: 'Run spacectl local-preview for a stack (requires stack ID as parameter)'
+    cmds:
+      - spacectl stack local-preview --id {{.STACK_ID}}
+    requires:
+      vars: [STACK_ID]
