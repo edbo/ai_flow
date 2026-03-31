@@ -1,0 +1,61 @@
+[project]
+name = "ai-flow-workspace"
+version = "0.0.0"
+description = "Opinionated AI agent workflow system built on Temporal and Claude"
+requires-python = ">=3.13"
+
+[dependency-groups]
+dev = [
+    "mypy>=1.15",
+    "pytest>=8.0",
+    "pytest-cov>=6.0",
+    "ruff>=0.11",
+]
+
+[tool.uv.workspace]
+members = [
+    "libs/*",
+    "services/*",
+]
+
+[tool.uv.sources]
+ai-flow = { workspace = true }
+
+[tool.mypy]
+strict = true
+python_version = "3.13"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_any_generics = true
+no_implicit_optional = true
+check_untyped_defs = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+
+[tool.pytest.ini_options]
+testpaths = ["libs/*/tests", "services/*/tests"]
+addopts = "--strict-markers --tb=short -q"
+
+[tool.ruff]
+target-version = "py313"
+line-length = 120
+src = ["libs/*/src", "services/*/src"]
+
+[tool.ruff.lint]
+select = [
+    "E",     # pycodestyle errors
+    "W",     # pycodestyle warnings
+    "F",     # pyflakes
+    "I",     # isort
+    "UP",    # pyupgrade
+    "B",     # flake8-bugbear
+    "SIM",   # flake8-simplify
+    "TCH",   # flake8-type-checking
+    "ANN",   # flake8-annotations
+    "RUF",   # ruff-specific rules
+]
+ignore = []
+
+[tool.ruff.lint.isort]
+known-first-party = ["ai_flow"]
