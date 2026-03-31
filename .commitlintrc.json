@@ -23,7 +23,10 @@
             2,
             "always",
             [
-                "workflow"
+                "workflow",
+                "python",
+                "ci",
+                "infra"
             ]
         ],
         "scope-empty": [

@@ -20,7 +20,11 @@
       "mcp__linear__list_issue_labels",
       "mcp__linear__save_project",
       "mcp__linear__save_milestone",
-      "mcp__linear__save_issue"
+      "mcp__linear__save_issue",
+      "Bash(uv --version)",
+      "Bash(uv python:*)",
+      "Bash(uv sync:*)",
+      "Bash(git add:*)"
     ]
   }
 }
