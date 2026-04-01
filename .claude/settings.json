@@ -36,7 +36,8 @@
       "Bash(git -C /Users/edbo/Source/ai_flow diff)",
       "Bash(git -C /Users/edbo/Source/ai_flow log --oneline -5)",
       "Bash(git -C /Users/edbo/Source/ai_flow add pyproject.toml uv.lock sonar-project.properties .github/workflows/ci.yml libs/ai-flow/README.md libs/ai-flow/src/ai_flow/workflow.py libs/ai-flow/tests/test_workflow.py)",
-      "Bash(git -C /Users/edbo/Source/ai_flow push -u origin ed/aif-13-set-up-sonarcloud-with-code-coverage-reporting)"
+      "Bash(git -C /Users/edbo/Source/ai_flow push -u origin ed/aif-13-set-up-sonarcloud-with-code-coverage-reporting)",
+      "Bash(git -C /Users/edbo/Source/ai_flow add .github/workflows/ci.yml)"
     ]
   }
 }
