@@ -28,14 +28,28 @@ jobs:
       - name: Install dependencies
         run: uv sync
 
+      - name: Find Python source dirs
+        id: pydirs
+        run: |
+          dirs=""
+          for d in libs/ services/; do
+            if find "$d" -name '*.py' -print -quit | grep -q .; then
+              dirs="$dirs $d"
+            fi
+          done
+          echo "dirs=$dirs" >> "$GITHUB_OUTPUT"
+
       - name: Lint
-        run: uv run ruff check libs/ services/
+        if: steps.pydirs.outputs.dirs != ''
+        run: uv run ruff check ${{ steps.pydirs.outputs.dirs }}
 
       - name: Format check
-        run: uv run ruff format --check libs/ services/
+        if: steps.pydirs.outputs.dirs != ''
+        run: uv run ruff format --check ${{ steps.pydirs.outputs.dirs }}
 
       - name: Type check
-        run: uv run mypy libs/ services/
+        if: steps.pydirs.outputs.dirs != ''
+        run: uv run mypy ${{ steps.pydirs.outputs.dirs }}
 
       - name: Run tests with coverage
         run: uv run pytest
